@@ -1,0 +1,17 @@
+{
+  "orderSummaryHeader": "Order summary",
+  "shoppingCartHeader": "Shopping cart",
+  "product": {
+    "description": "Forever by Mariah Carey 100ml EDP",
+    "quantity": "1",
+    "price": "$89.99"
+  },
+  "costSummaryHeader": "Cost summary",
+  "subtotal": "$89.99",
+  "shipping": "Enter shipping address",
+  "total": {
+    "currency": "NZD",
+    "amount": "$89.99"
+  },
+  "taxesInfo": "Including $11.74 in taxes"
+}

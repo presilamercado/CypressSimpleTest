@@ -1,0 +1,29 @@
+{
+  "searchKeyword": "Chanel no.5",
+  "productTitle": "Forever Elizabeth by Elizabeth Taylor 100ml EDP",
+  "price": "$89.99",
+  "title": "Chanel No.5 by Chanel 50ml EDP",
+  "currentPrice": "$214.99",
+  "compareAtPriceMin": "$214.99",
+  "compareAtPriceMax": "$214.99",
+  "quantityOptions": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"],
+  "stockMessage": "In stock & ready for dispatch",
+  "addToCartButton": "Add to Cart",
+  "installmentText": "or make 4 payments of $53.74 fortnightly",
+  "description": [
+    "Chanel No.5 by Chanel 50ml Eau De Parfum Spray for Women",
+    "ultimate in femininity",
+    "Designer: Chanel",
+    "Year Introduced: 1921",
+    "Type: EDP",
+    "Category: Women"
+  ],
+  "cartBanner": {
+    "bannerTitle": "Added to your cart:",
+    "productTitle": "Chanel No.5 by Chanel 50ml EDP",
+    "quantityText": "1 ×",
+    "priceValue": "$214.99",
+    "cartSubtotal": "$214.99",
+    "viewCartText": "View cart (1)"
+  }
+}
