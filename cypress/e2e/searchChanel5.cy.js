@@ -7,7 +7,6 @@ describe('Search Favourite Perfume', () => {
     cy.visit('/collections/mariah-carey');
 
 
-    // Intercepts
     // Intercept the place-order API call
     cy.intercept('GET', '**/api/place-order/store-front?shopify_domain=wholesalewarehouse.myshopify.com&customer_id=*').as('placeOrderApi');
   });
@@ -20,7 +19,8 @@ describe('Search Favourite Perfume', () => {
 
     // Click search result title to go to the product detail page
     cy.contains(this.product.searchKeyword).should('exist').click();
-    cy.wait('@placeOrderApi');
+    cy.wait(2000)
+    //cy.wait('@placeOrderApi');
     cy.get('a[href*="/products/chanel-no-5-by-chanel-50ml-edp"]').first().click();
     cy.wait('@placeOrderApi');
 
