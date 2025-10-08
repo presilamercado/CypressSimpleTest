@@ -22,33 +22,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js environment with version 20 and npm caching
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      # Step 2: Use official Cypress GitHub Action (handles Node.js, npm install, Cypress install & run)
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-          node-version: 20
-          cache: npm
+          # Record to Cypress Dashboard (optional - remove if you don't want dashboard integration)
+          record: true
+        env:
+          # Cypress Dashboard record key - add your key to GitHub repository secrets
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
-      # Step 3: Install project dependencies using npm ci (faster, more reliable than npm install)
-      - name: Install dependencies
-        run: npm ci
-
-      # Step 4: Install Cypress binary (includes Electron browser for headless testing)
-      - name: Install Cypress
-        run: npx cypress install
-
-      # Step 5: Execute all Cypress test files in headless mode
-      - name: Run Cypress tests
-        run: npx cypress run
-
-      # Step 6: Upload test results and reports as artifacts (runs even if tests fail)
-      - name: Upload Cypress report
-        if: always() # Upload report regardless of test results
+      # Step 3: Upload test artifacts (screenshots, videos) if tests fail
+      - name: Upload Cypress artifacts
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-report
-          path: cypress/reports
-          if-no-files-found: ignore # Don't fail if no report files are generated
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
+          if-no-files-found: ignore
 
 
 
