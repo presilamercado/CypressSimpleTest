@@ -1,0 +1,55 @@
+# GitHub Actions workflow for running Cypress end-to-end tests
+name: Cypress Tests
+
+# Trigger conditions: run this workflow when code is pushed or PRs are opened
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+    name: Run Cypress
+    runs-on: ubuntu-latest # Use Ubuntu Linux runner for the tests
+
+    steps:
+      # Step 1: Get the source code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment with version 20 and npm caching
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Step 3: Install project dependencies using npm ci (faster, more reliable than npm install)
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Install Cypress binary (includes Electron browser for headless testing)
+      - name: Install Cypress
+        run: npx cypress install
+
+      # Step 5: Execute all Cypress test files in headless mode
+      - name: Run Cypress tests
+        run: npx cypress run
+
+      # Step 6: Upload test results and reports as artifacts (runs even if tests fail)
+      - name: Upload Cypress report
+        if: always() # Upload report regardless of test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-report
+          path: cypress/reports
+          if-no-files-found: ignore # Don't fail if no report files are generated
+
+
+
+
